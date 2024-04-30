@@ -1,1 +1,8 @@
 The maps include:
+2019-classification.tif
+2021-Feb-classification.tif
+2021-sep-clification.tif
+
+2019-classification.tif is based on the PlantVillage 2019 training data (https://scholarsphere.psu.edu/resources/4ca53550-74ea-4eae-a23b-392c7ed7908d)
+2021-Feb-classification.tif is based on (Jepkosgei,2023) training data (https://essay.utwente.nl/view/faculty/ITC.html)
+2021-sep-classification.tif is based on the JRC, 2021 training data (https://data.jrc.ec.europa.eu/dataset)
