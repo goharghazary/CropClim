@@ -1,0 +1,87 @@
+This file describes the procedure for the  DSSAT-CERES-Maize simulations for characterizing maize production in Busia County in 2019 and 2021 
+maize growing seasons
+
+1. Description of the DSSAT-CERES-Maize model
+
+DSSAT Cropping System Model (CSM) simulates the growth, development and yield of a crop growing on a uniform area of land under prescribed or simulated management, as well as the changes in 
+soil water, carbon, and nitrogen that take place under the cropping system over time(Jones et al., 2003). The DSSAT modeling system includes the Crop Environment Resource Synthesis (CERES-Maize) 
+model used for simulating maize (Zea mays L.) growth and yield under various environmental conditions. The model has been used to address a range of applications, such as evaluating strategies to 
+cope with limited weather and soil conditions (Malik & Dechmi, 2019), evaluating climate change impacts on crop production (Babel & Turyatunga, 2015; Jiang et al., 2021; Lin et al., 2015), optimizing 
+agronomic practices for increased production (Mubeen et al., 2016), and assessing the performance of various cultivars and their suitability in different environmental conditions
+(Chisanga et al., 2021; Feleke et al., 2021). 
+
+
+2. Description of the DSSAT-CERES-Maize model inputs
+Various datasets ranging from genotype, weather, and soil data were used as inputs for the DSSAT-CERES-Maize model. The daily weather variables include precipitation, maximum and minimum temperatures, and solar
+radiation. The precipitation and temperature datasets were obtained from the Kenya Meteorological Department, whereas the solar radiation data were obtained from the National Aeronautics and Space Administration
+Prediction Of Worldwide Energy Resource (NASA POWER). The soil data was obtained from the global high-resolution soil profile dataset through the Harvard University dataverse website
+https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/1PEEY0. The database contains soil profiles at grid scale with a spatial resolution of approximately 9 kilometers. 
+The cultivar specific values for the H614 variety calibrated and evaluated by Kipkulei et al. (2022)are indicated in Table 1.
+
+Table 1: Calibrated Cultivar Specific values for the H614 maize variety
++------+----------+-------+----------+-------------------+----------+----------+
+|      | P1       | P2    | P5       | G2                | G3       | PHINT    |
++------+----------+-------+----------+-------------------+----------+----------+
+|      | (°C day) | (day) | (°C day) | (No. Kernels/ear) | (mg/day) | (°C day) |
++------+----------+-------+----------+-------------------+----------+----------+
+| H614 | 290.8    | 0.471 | 921.2    | 796.8             | 5.26     | 39.74    |
++------+----------+-------+----------+-------------------+----------+----------+
+
+P1-	Thermal time from seedling emergence to the end of the juvenile phase (expressed in degree days above a base temperature of 8 °C) during which the plant is not responsive to changes in photoperiod.
+P2-	Extent to which development (expressed as days) is delayed for each hour increase in photoperiod above the longest photoperiod at which development proceeds at a maximum rate (which is considered to be 12.5 hours).
+P5-	Thermal time from silking to physiological maturity (expressed in degree days above a base temperature of 8 °C)
+G2-	Maximum possible number of kernels per plant.
+G3-	Kernel filling rate during the linear grain filling stage and under optimum conditions (mg/day).
+PHINT-	Phyllochron interval, the interval in thermal time (degree days) between successive leaf tip appearances.
+
+
+3. Entering data into the appropriate files and DSSAT-CERES-Maize model simulations
+The procedure for conducting the DSSAT-CERES-Maize model simulations included:
+a. Preparing the input datasets (genotype file for the H614 cultivar)
+b. Preparing the weather input files (WTH)
+	- The obtained CSV files for the existing weather stations were mapped in a GIS environment, and automated procedure implemented in model builder (ARCGIS) to generate
+	daily raster geotiffs for the two growing seasons.
+	-The mapped soil locations were used to extract daily precipitation and temperature data from the generated tiffs using the model builder platform
+	- Additional solar radiation data were obtained from the NASA POWER website in csv data format, and the column for radiation data was processed for integration with the precipitation and temperature data
+	-The weather files  (WTH) were prepared using customized scripts in the Python environment
+c. Uploading of the soil files 
+	- The processed DSSAT-input ready soil files were uploaded to the soil folder in the DSSAT-CERES-Maize folder installed on the local drive.
+d. Preparation of the crop management data
+	- The crop management data, including sowing dates and fertilization, were entered into the crop management data file. The information was entered based on the standard management practices in the study region.
+
+4. Description of the output files
+The DSSAT-CERES-Maize model was used to simulate yield for 43 locations across the county. The simulated yield at the point scale was interpolated using the Inverse Distance Weighting (IDW) procedure to obtain continuous yield surfaces.
+The maize and maize/mixed crop masks generated from the 2019 and 2021 crop classifications were used to mask yield in only maize-grown zones.
+The yield for the two seasons is saved as Yield_2019.tif and Yield_2021.tif. 
+
+
+
+5. References
+
+1.	Babel, M. S., & Turyatunga, E. (2015). Evaluation of climate change impacts and adaptation measures for maize cultivation in the western Uganda agro-ecological zone. Theoretical and Applied Climatology, 119(1), 239-254. https://doi.org/10.1007/s00704-014-1097-z 
+2.	Chisanga, C. B., Phiri, E., & Chinene, V. R. N. (2021). Evaluating APSIM-and-DSSAT-CERES-Maize Models under Rainfed Conditions Using Zambian Rainfed Maize Cultivars. 2(4), 392-414. https://www.mdpi.com/2504-3129/2/4/27 
+3.	Feleke, H. G., Savage, M. J., & Tesfaye, K. (2021). Calibration and validation of APSIM–Maize, DSSAT CERES–Maize and AquaCrop models for Ethiopian tropical environments. South African Journal of Plant and Soil, 38(1), 36-51. https://doi.org/10.1080/02571862.2020.1837271 
+4.	Jiang, R., He, W., He, L., Yang, J. Y., Qian, B., Zhou, W., & He, P. (2021). Modelling adaptation strategies to reduce adverse impacts of climate change on maize cropping system in Northeast China. Scientific Reports, 11(1), 810. https://doi.org/10.1038/s41598-020-79988-3 
+5.	Jones, J. W., Hoogenboom, G., Porter, C. H., Boote, K. J., Batchelor, W. D., Hunt, L. A., . . . Ritchie, J. T. (2003). The DSSAT cropping system model. European Journal of Agronomy, 18(3), 235-265. https://doi.org/https://doi.org/10.1016/S1161-0301(02)00107-7 
+6.	Kipkulei, H. K., Bellingrath-Kimura, S. D., Lana, M., Ghazaryan, G., Baatz, R., Boitt, M., . . . Sieber, S. (2022). Assessment of Maize Yield Response to Agricultural Management Strategies Using the DSSAT–CERES-Maize Model in Trans Nzoia County in Kenya. International Journal of Plant Production. https://doi.org/10.1007/s42106-022-00220-5 
+7.	Lin, Y., Wu, W., & Ge, Q. (2015). CERES-Maize model-based simulation of climate change impacts on maize yields and potential adaptive measures in Heilongjiang Province, China. 95(14), 2838-2849. https://doi.org/https://doi.org/10.1002/jsfa.7024 
+8.	Malik, W., & Dechmi, F. (2019). DSSAT modelling for best irrigation management practices assessment under Mediterranean conditions. Agricultural Water Management, 216, 27-43. https://doi.org/https://doi.org/10.1016/j.agwat.2019.01.017 
+9.	Mubeen, M., Ahmad, A., Wajid, A., Khaliq, T., Hammad, H. M., Sultana, S. R., . . . Nasim, W. (2016). Application of CSM-CERES-Maize model in optimizing irrigated conditions. 45(3), 173-184. https://doi.org/10.1177/0030727016664464 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
