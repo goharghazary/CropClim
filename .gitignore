@@ -1,0 +1,11 @@
+**/.ipynb_checkpoints/**
+**/__pycache__/**
+# QGIS style files
+**.qmd
+**.aux.xml
+# Do not commit raster files in the repository
+#**tif
+# File is too big to commit to repository
+**/sep_2021_to_jan_2022_probabilities.tif
+# Do not commit credentials
+**/.env
